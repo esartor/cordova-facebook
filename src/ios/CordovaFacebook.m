@@ -64,8 +64,13 @@ static NSMutableArray *publishPermissions;
     }
     
     NSURL *url = [params objectForKey:@"url"];
-    NSString *scheme = @"fb";
-    if ([[url scheme] isEqualToString:[scheme stringByAppendingString:appId]] == FALSE) {
+    NSString *urlSuffix = [params objectForKey:@"urlSuffix"];
+    NSString *fullScheme = [scheme stringByAppendingString:appId];
+
+    if (urlSuffix != nil) {
+        fullScheme = [fullScheme stringByAppendingString:urlSuffix];
+    }
+    if ([[url scheme] isEqualToString:fullScheme] == FALSE) {
         return;
     }
     if([CordovaFacebook loginCallbackId] == nil || [CordovaFacebook commandDelegate] == nil) { // nowhere to call back

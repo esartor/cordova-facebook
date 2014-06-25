@@ -1,6 +1,8 @@
 cordova-facebook
 ================
 
+This is a fork of [https://github.com/ccsoft/cordova-facebook] to add support to share the same Facebook App ID among multiple iOS apps.
+
 [Cordova](http://cordova.apache.org/) plugin that handles Facebook integration for mobile (iOS and Android) apps.
 
 Project uses mobile native platform FacebookSDK for iOS and Android to utilize basic operations for a mobile app that uses Cordova. 
@@ -30,6 +32,9 @@ We currently tested FacebookSDK for following platforms and versions:
 Download the latest [FacebookSDK](https://developers.facebook.com/docs/ios/), and follow the [getting started guideline](https://developers.facebook.com/docs/ios/getting-started/). 
 
 The guideline is well documented and people at Facebook may change stuff in the future, so we stick to that instead of fancy cordova plugin hacks (well, cordova people also modify plugin flow too).
+
+If you are sharing the same Facebook App ID among multiple apps, set FacebookUrlSchemeSuffix as described [here](https://developers.facebook.com/docs/ios/troubleshooting#sharedappid).
+Also add the suffix to the value of URL types/URL schemes so it looks like fb<your_fbapp_ip><suffix>.
 
 ###Android
 
@@ -62,8 +67,10 @@ Add the following block to your AppDelegate.m
   	sourceApplication:(NSString *)sourceApplication
          	annotation:(id)annotation
 	{
-    	NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                          url, @"url", sourceApplication, @"sourceApplication", @"NO", @"success", nil];
+	NSString *urlSuffix = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"FacebookUrlSchemeSuffix"];
+	
+	NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                          url, @"url", sourceApplication, @"sourceApplication", @"NO", @"success", urlSuffix, @"urlSuffix", nil];
     	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"CordovaPluginOpenURLNotification" object:self userInfo:dict]];
     
     	NSString* success = [dict objectForKey:@"success"];
