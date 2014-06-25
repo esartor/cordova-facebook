@@ -1,7 +1,7 @@
 cordova-facebook
 ================
 
-This is a fork of [https://github.com/ccsoft/cordova-facebook] to add support to share the same Facebook App ID among multiple iOS apps.
+This is a fork of https://github.com/ccsoft/cordova-facebook to add support to share the same Facebook App ID among multiple iOS apps.
 
 [Cordova](http://cordova.apache.org/) plugin that handles Facebook integration for mobile (iOS and Android) apps.
 
@@ -33,8 +33,8 @@ Download the latest [FacebookSDK](https://developers.facebook.com/docs/ios/), an
 
 The guideline is well documented and people at Facebook may change stuff in the future, so we stick to that instead of fancy cordova plugin hacks (well, cordova people also modify plugin flow too).
 
-If you are sharing the same Facebook App ID among multiple apps, set FacebookUrlSchemeSuffix as described [here](https://developers.facebook.com/docs/ios/troubleshooting#sharedappid).
-Also add the suffix to the value of URL types/URL schemes so it looks like fb<your_fbapp_ip><suffix>.
+If you are sharing the same Facebook App ID among multiple apps, set `FacebookUrlSchemeSuffix` as described [here](https://developers.facebook.com/docs/ios/troubleshooting#sharedappid).
+Also add the suffix to the value of URL types/URL schemes so it looks like `fb<your_fbapp_ip><suffix>`.
 
 ###Android
 
