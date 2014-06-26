@@ -64,6 +64,7 @@ static NSMutableArray *publishPermissions;
     }
     
     NSURL *url = [params objectForKey:@"url"];
+    NSString *scheme = @"fb";
     NSString *urlSuffix = [params objectForKey:@"urlSuffix"];
     NSString *fullScheme = [scheme stringByAppendingString:appId];
 
